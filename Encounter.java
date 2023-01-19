@@ -10,20 +10,20 @@ import javax.persistence.OneToMany;
 public class Encounter {
 	@Id
 	private int id;
-	private String name;
-	private String place;
-	
-//	@OneToMany
-//	private List<Branch> branchList;
+	private String cause;
+	private String date;
 //	
-//	public List<Branch> getBranchList() {
-//		return branchList;
-//	}
-//
-//	public void setBranchList(List<Branch> branchList) {
-//		this.branchList = branchList;
-//	}
+	@OneToMany
+	private List<Branch> branchList;
+	
+	public List<Branch> getBranchList() {
+		return branchList;
+	}
 
+	public void setBranchList(List<Branch> branchList) {
+		this.branchList = branchList;
+	}
+//
 
 	@OneToMany
 	private List<MedicineOrder> medicineOrder;
@@ -45,27 +45,29 @@ public class Encounter {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getCause() {
+		return cause;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCause(String cause) {
+		this.cause = cause;
 	}
 
-	public String getPlace() {
-		return place;
+	public String getDate() {
+		return date;
 	}
 
-	public void setPlace(String place) {
-		this.place = place;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	@Override
 	public String toString() {
-		return "Encounter [id=" + id + ", name=" + name + ", place=" + place + ", medicineOrder=" + medicineOrder + "]";
+		return "Encounter [id=" + id + ", cause=" + cause + ", date=" + date + ", branchList=" + branchList
+				+ ", medicineOrder=" + medicineOrder + "]";
 	}
 
+	
 	
 
 }
