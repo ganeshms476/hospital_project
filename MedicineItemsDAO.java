@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import com.ty.hospital_project.dto.MedicineItems;
 import com.ty.hospital_project.dto.MedicineOrder;
@@ -57,5 +58,24 @@ public class MedicineItemsDAO {
 		
 	}
 	
+	public MedicineItems getMedicineItemsById(int id) {
+		EntityManager entityManager=getEntityManager();
+		
+		
+		MedicineItems medicineItems=entityManager.find(MedicineItems.class,id);
+		return medicineItems;
+		
+	}
+
+	public List<MedicineItems> getAllMedicineItems() {
+		EntityManager entityManager=getEntityManager();
+		Query query=entityManager.createQuery("select m from MedicineItems m");
+		List<MedicineItems> list=query.getResultList();
+		return list;
+		
+		
+	}
+	
+
 
 }
