@@ -1,5 +1,6 @@
 package com.ty.hospital_project.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -43,10 +44,11 @@ public class MedicineItemsDAO {
 		entityTransaction.commit();
 		}
 		else {
-			medicineItemsList.add(medicineItems);
+			List<MedicineItems> medicineItemsList1=new ArrayList<MedicineItems>();
+			medicineItemsList1.add(medicineItems);
 			
 			medicineOrder.setMedId(medicineOrder_id);
-			medicineOrder.setMedicineItems(medicineItemsList);
+			medicineOrder.setMedicineItems(medicineItemsList1);
 			
 			entityTransaction.begin();
 			entityManager.persist(medicineItems);
@@ -56,7 +58,33 @@ public class MedicineItemsDAO {
 			
 		}
 		
+		
+		
 	}
+	
+	public void deleteMedicineItems(int id) {
+		EntityManager entityManager=getEntityManager();
+		EntityTransaction entityTransaction=entityManager.getTransaction();
+		
+		MedicineItems medicineItems=entityManager.find(MedicineItems.class,id);
+		
+		entityTransaction.begin();
+		
+		if(medicineItems!=null) {
+			medicineItems.setId(id);		
+			entityManager.remove(medicineItems);
+			
+
+			entityTransaction.commit();
+			
+			System.out.println("Deleted successfully");
+		}
+		else {
+			System.out.println("MedicineItems id not present");
+		}
+			
+	}
+	
 	
 	public MedicineItems getMedicineItemsById(int id) {
 		EntityManager entityManager=getEntityManager();

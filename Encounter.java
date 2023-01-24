@@ -12,7 +12,7 @@ public class Encounter {
 	private int id;
 	private String cause;
 	private String date;
-//	
+	
 	@OneToMany
 	private List<Branch> branchList;
 	
@@ -23,7 +23,7 @@ public class Encounter {
 	public void setBranchList(List<Branch> branchList) {
 		this.branchList = branchList;
 	}
-//
+
 
 	@OneToMany
 	private List<MedicineOrder> medicineOrder;
@@ -60,6 +60,12 @@ public class Encounter {
 	public void setDate(String date) {
 		this.date = date;
 	}
+//
+//	@Override
+//	public String toString() {
+//		return "Encounter [id=" + id + ", cause=" + cause + ", date=" + date 
+//				+ ", medicineOrder=" + medicineOrder + "]";
+//	}
 
 	@Override
 	public String toString() {

@@ -38,16 +38,17 @@ public class MedcineOrderDao {
 			encounter.setId(encounter_id);
 			encounter.setMedicineOrder(medicineOrderList);
 			
-		entityTransaction.begin();
-
-		entityManager.persist(medicineOrder);
-		entityManager.merge(encounter);
-		
-		entityTransaction.commit();
+			entityTransaction.begin();
+	
+			entityManager.persist(medicineOrder);
+			entityManager.merge(encounter);
+			
+			entityTransaction.commit();
 		}else {
-			medicineOrderList.add(medicineOrder);
+			List<MedicineOrder> medicineOrderList1=new ArrayList<MedicineOrder>();
+			medicineOrderList1.add(medicineOrder);
 			encounter.setId(encounter_id);
-			encounter.setMedicineOrder(medicineOrderList);
+			encounter.setMedicineOrder(medicineOrderList1);
 			
 			entityTransaction.begin();
 	
@@ -55,6 +56,8 @@ public class MedcineOrderDao {
 			entityManager.merge(encounter);
 			
 			entityTransaction.commit();
+			
+		
 			
 		}
 	}

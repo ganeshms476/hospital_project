@@ -23,6 +23,8 @@ import com.ty.hospital_project.dto.MedicineItems;
 import com.ty.hospital_project.dto.MedicineOrder;
 import com.ty.hospital_project.dto.Person;
 
+import net.bytebuddy.asm.Advice.Enter;
+
 public class HospitalMain {
 
 	public static void main(String[] args) {
@@ -54,7 +56,7 @@ public class HospitalMain {
 			case 1: {
 				boolean exit1 = true;
 				do {
-					System.out.println(" 1.Add hospital \n 2.Get hospital details by id \n 3.Get all hospital details \n 4.exit");
+					System.out.println(" 1.Add hospital \n 2.Get hospital details by id \n 3.Get all hospital details \n 4 delete hospital \n 5  .exit");
 					System.out.println("Enter your choice");
 					int choice1 = scanner.nextInt();
 					switch (choice1) {
@@ -90,7 +92,14 @@ public class HospitalMain {
 
 					}
 						break;
-					case 4: {
+					case 4:{
+						System.out.println("Enter the hospital id to delete");
+						int id = scanner.nextInt();
+						
+						hospitalDAO.deleteHospital(id);
+					}
+					break;
+					case 5: {
 						exit1 = false;
 						System.out.println("======Thank you====");
 
@@ -152,6 +161,13 @@ public class HospitalMain {
 					}
 					break;
 					case 4:{
+						System.out.println("Enter the branch id to delete");
+						int id = scanner.nextInt();
+						
+						branchDAO.deleteBranch(id);
+					}
+					break;
+					case 5:{
 						exit2 = false;
 						System.out.println("======Thank you====");
 						
@@ -215,6 +231,13 @@ public class HospitalMain {
 					}
 					break;
 					case 4:{
+						System.out.println("Enter the address id to delete");
+						int id = scanner.nextInt();
+						
+						addressDAO.deleteAddress(id);
+					}
+					break;
+					case 5:{
 						exit3=false;
 						System.out.println("======Thank you=====");
 					}
@@ -272,7 +295,15 @@ public class HospitalMain {
 						System.out.println(" ===========person details==========");
 					}
 					break;
+					
 					case 4:{
+						System.out.println("Enter the person id to delete");
+						int id = scanner.nextInt();
+						
+						personDao.deletePerson(id);
+					}
+					break;
+					case 5:{
 						exit4=false;
 						System.out.println("======Thank you=====");
 					}
@@ -288,7 +319,7 @@ public class HospitalMain {
 			case 5: {
 				boolean exit5 = true;
 				do {
-					System.out.println(" 1.Add Encounter \n 2.Get Encounter details by id \n 3.Get all Encounter details \n 4.exit");
+					System.out.println(" 1.Add Encounter \n 2.Get Encounter details by id \n 3.Get all Encounter details \n 4.update encounter\n 5.exit");
 					System.out.println("Enter your choice");
 					int choice1 = scanner.nextInt();
 					switch (choice1) {
@@ -354,6 +385,18 @@ public class HospitalMain {
 					}
 					break;
 					case 4:{
+						System.out.println("enter the encounter id");
+						int id=scanner.nextInt();
+						System.out.println("enter the branch id");
+						int bid=scanner.nextInt();
+						
+						Encounter encounter=new Encounter();
+						encounter.setId(id);
+						encounterCrud.updateEncounter(bid, encounter);
+						
+					}
+					break;
+					case 5:{
 						exit5=false;
 						System.out.println("======Thank you=====");
 					}
@@ -420,6 +463,13 @@ public class HospitalMain {
 					}
 					break;
 					case 4:{
+						System.out.println("Enter the medicine order id to delete");
+						int id = scanner.nextInt();
+						
+						medcineOrderDao.deleteMedicineOrder(id);
+					}
+					break;
+					case 5:{
 						exit6=false;
 						System.out.println("======Thank you=====");
 					}
@@ -488,11 +538,18 @@ public class HospitalMain {
 					break;
 					case 3:{
 						medicineItemsDAO.getAllMedicineItems();
-						System.out.println(" ===========medicineItems details==========");
+						System.out.println(" ===========medicineItems" + " details==========");
 						
 					}
 					break;
 					case 4:{
+						System.out.println("Enter the medicine Items id to delete");
+						int id = scanner.nextInt();
+						
+						medicineItemsDAO.deleteMedicineItems(id);
+					}
+					break;
+					case 5:{
 						exit7=false;
 						System.out.println("======Thank you=====");
 					}

@@ -14,16 +14,16 @@ public class Branch {
 	private String bname;
 	private long phone;
 	
-	@ManyToOne
-	private Encounter encounter;
-	
-	public Encounter getEncounter() {
-		return encounter;
-	}
-
-	public void setEncounter(Encounter encounter) {
-		this.encounter = encounter;
-	}
+//	@ManyToOne
+//	private Encounter encounter;
+//	
+//	public Encounter getEncounter() {
+//		return encounter;
+//	}
+//
+//	public void setEncounter(Encounter encounter) {
+//		this.encounter = encounter;
+//	}
 
 	@OneToOne
 	private Address address;
@@ -62,10 +62,16 @@ public class Branch {
 
 	@Override
 	public String toString() {
-		return "Branch [id=" + id + ", bname=" + bname + ", phone=" + phone + ", encounter=" + encounter + ", address="
-				+ address + "]";
+		return "Branch [id=" + id + ", bname=" + bname + ", phone=" + phone + ", address=" + address + "]";
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Branch [id=" + id + ", bname=" + bname + ", phone=" + phone + ", encounter=" + encounter + ", address="
+//				+ address + "]";
+//	}
+
+	
 	
 	
 	

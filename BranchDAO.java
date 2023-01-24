@@ -1,7 +1,7 @@
 package com.ty.hospital_project.dao;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,7 +26,7 @@ public class BranchDAO {
 		
 		List<Branch> branchList=hospital.getBranches();
 	
-		if(branchList!=null) {
+		if(hospital!=null) {
 		
 		branchList.add(branch);
 		hospital.setId(hospital_id);
@@ -55,21 +55,21 @@ public class BranchDAO {
 		entityTransaction.commit();
 	}
 	
-	public void deleteBranch(Branch branch) {
+	public void deleteBranch(int id) {
 		EntityManager entityManager = getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
-		Branch branch2=entityManager.find(Branch.class, branch.getId());
-		branch2.setId(branch.getId());
+		Branch branch=entityManager.find(Branch.class,id);
+		branch.setId(id);
 		entityTransaction.begin();
-		entityManager.remove(branch2);
+		entityManager.remove(branch);
 		entityTransaction.commit();
 	}
 	
-	public void getBranchById(Branch branch) {
+	public void getBranchById(int id) {
 		EntityManager entityManager = getEntityManager();
-		Branch branch2=entityManager.find(Branch.class, branch.getId());
-		branch2.setId(branch.getId());
-		System.out.println(branch2);
+		Branch branch=entityManager.find(Branch.class, id);
+		
+		System.out.println(branch);
 	}
 	
 	public void getAll() {

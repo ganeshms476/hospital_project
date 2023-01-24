@@ -43,27 +43,29 @@ public class AddressDAO {
 		EntityManager entityManager = getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		Address address1 = entityManager.find(Address.class, address.getId());
+		if(address1!=null) {
 		address1.setId(address.getId());
 		address1.setName(address.getName());
 		entityTransaction.begin();
 		entityManager.merge(address1);
 		entityTransaction.commit();
+		}
 	}
 
-	public void deleteAddress(Address address) {
+	public void deleteAddress(int id) {
 		EntityManager entityManager = getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
-		Address address2 = entityManager.find(Address.class, address.getId());
-		address2.setId(address.getId());
+		Address address = entityManager.find(Address.class, id);
+		address.setId(id);
 		entityTransaction.begin();
-		entityManager.remove(address2);
+		entityManager.remove(address);
 		entityTransaction.commit();
 	}
 
-	public void getAddressById(Address address) {
+	public void getAddressById(int id) {
 		EntityManager entityManager = getEntityManager();
-		Address address2 = entityManager.find(Address.class, address.getId());
-		address2.setId(address2.getId());
+		Address address2 = entityManager.find(Address.class, id);
+
 		System.out.println(address2);
 	}
 

@@ -42,13 +42,13 @@ public class HospitalDAO {
 		entityTransaction.commit();
 	}
 	
-	public void deleteHospital(Hospital hospital) {
+	public void deleteHospital(int id) {
 		EntityManager entityManager = getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
-		Hospital hospital2 = entityManager.find(Hospital.class,hospital.getId());
-		hospital2.setId(hospital.getId());
+		Hospital hospital = entityManager.find(Hospital.class,id);
+		
 		entityTransaction.begin();
-		entityManager.remove(hospital2);
+		entityManager.remove(hospital);
 		entityTransaction.commit();
 	}
 	

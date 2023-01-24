@@ -1,6 +1,8 @@
 package com.ty.hospital_project.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.ToIntFunction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,16 +31,20 @@ public class EncounterCrud {
 
 		Branch branch = entityManager.find(Branch.class, branch_id);
 
-		
 		List<Encounter> encounterList = person.getEncounter();
-		if (encounterList != null) {
+		List<Branch> branchList=encounter.getBranchList();
+		
+		if (encounterList != null && branchList!=null) {
 
 			encounterList.add(encounter);
-			branch.setEncounter(encounter);
+			branchList.add(branch);
+			//branch.setEncounter(encounter);
 			person.setPersonId(person_id);
 			person.setEncounter(encounterList);
-
+			
+			encounter.setBranchList(branchList);
 			branch.setId(branch_id);
+			
 			entityTransaction.begin();
 
 			entityManager.persist(encounter);
@@ -47,12 +53,15 @@ public class EncounterCrud {
 			entityTransaction.commit();
 		}
 		else {
-
-			encounterList.add(encounter);
-			branch.setEncounter(encounter);
+			List<Encounter> encounterList1 =new ArrayList<Encounter>();
+			List<Branch> branchList1=new ArrayList<Branch>();
+			encounterList1.add(encounter);
+			branchList1.add(branch);
+		//	branch.setEncounter(encounter);
 			person.setPersonId(person_id);
-			person.setEncounter(encounterList);
-
+			person.setEncounter(encounterList1);
+			
+			encounter.setBranchList(branchList1);
 			branch.setId(branch_id);
 
 			entityTransaction.begin();
@@ -79,6 +88,7 @@ public class EncounterCrud {
 		} else {
 			System.out.println("not found");
 		}
+
 
 	}
 
